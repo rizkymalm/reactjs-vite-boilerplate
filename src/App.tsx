@@ -1,14 +1,23 @@
 import './App.css';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import heroImg from './assets/hero.png';
 import reactLogo from './assets/react.svg';
 import viteLogo from './assets/vite.svg';
+import { isAdmin } from './helpers/isAdmin';
 
-function App() {
-    const [count, setCount] = useState(0);
+const user = 'user';
 
+const App = () => {
+    const [state] = useState(0);
+    useEffect(() => {
+        console.info(user, state);
+    }, [state]);
+
+    const handleClickButton = () => {
+        isAdmin();
+    };
     return (
         <>
             <section id="center" className="container">
@@ -23,9 +32,9 @@ function App() {
                     <img
                         src={reactLogo}
                         className="framework"
-                        alt="React logo"
+                        alt="react logo"
                     />
-                    <img src={viteLogo} className="vite" alt="Vite logo" />
+                    <img src={viteLogo} className="vite" alt="vite logo" />
                 </div>
                 <div>
                     <h1>Get started</h1>
@@ -37,13 +46,13 @@ function App() {
                 <button
                     type="button"
                     className="counter"
-                    onClick={() => setCount(count => count + 1)}
+                    onClick={handleClickButton}
                 >
-                    Count is {count}
+                    button
                 </button>
             </section>
 
-            <div className="ticks"></div>
+            <div className="ticks" />
 
             <section id="next-steps">
                 <div id="docs">
@@ -52,7 +61,7 @@ function App() {
                         role="presentation"
                         aria-hidden="true"
                     >
-                        <use href="/icons.svg#documentation-icon"></use>
+                        <use href="/icons.svg#documentation-icon" />
                     </svg>
                     <h2>Documentation</h2>
                     <p>Your questions, answered</p>
@@ -89,7 +98,7 @@ function App() {
                         role="presentation"
                         aria-hidden="true"
                     >
-                        <use href="/icons.svg#social-icon"></use>
+                        <use href="/icons.svg#social-icon" />
                     </svg>
                     <h2>Connect with us</h2>
                     <p>Join the Vite community</p>
@@ -105,7 +114,7 @@ function App() {
                                     role="presentation"
                                     aria-hidden="true"
                                 >
-                                    <use href="/icons.svg#github-icon"></use>
+                                    <use href="/icons.svg#github-icon" />
                                 </svg>
                                 GitHub
                             </a>
@@ -121,7 +130,7 @@ function App() {
                                     role="presentation"
                                     aria-hidden="true"
                                 >
-                                    <use href="/icons.svg#discord-icon"></use>
+                                    <use href="/icons.svg#discord-icon" />
                                 </svg>
                                 Discord
                             </a>
@@ -137,7 +146,7 @@ function App() {
                                     role="presentation"
                                     aria-hidden="true"
                                 >
-                                    <use href="/icons.svg#x-icon"></use>
+                                    <use href="/icons.svg#x-icon" />
                                 </svg>
                                 X.com
                             </a>
@@ -153,7 +162,7 @@ function App() {
                                     role="presentation"
                                     aria-hidden="true"
                                 >
-                                    <use href="/icons.svg#bluesky-icon"></use>
+                                    <use href="/icons.svg#bluesky-icon" />
                                 </svg>
                                 Bluesky
                             </a>
@@ -162,10 +171,10 @@ function App() {
                 </div>
             </section>
 
-            <div className="ticks"></div>
-            <section id="spacer"></section>
+            <div className="ticks" />
+            <section id="spacer" />
         </>
     );
-}
+};
 
 export default App;
