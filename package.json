@@ -16,7 +16,7 @@
         "react-dom": "^19.2.7"
     },
     "devDependencies": {
-        "@digimal/eslint-config": "^0.1.0",
+        "@digimal/eslint-config": "file:../digimal-devkit/packages/eslint-config/digimal-eslint-config-0.1.0.tgz",
         "@eslint/eslintrc": "^3.3.1",
         "@eslint/js": "^9.36.0",
         "@tailwindcss/cli": "^4.3.3",
