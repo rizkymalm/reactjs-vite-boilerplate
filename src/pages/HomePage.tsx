@@ -1,10 +1,16 @@
 import '../App.css';
 
+import { useDispatch, useSelector } from 'react-redux';
+
 import heroImg from '../assets/hero.png';
 import reactLogo from '../assets/react.svg';
 import viteLogo from '../assets/vite.svg';
+import { userListLoading } from '../redux/reducers/userReducer';
+import type { AppDispatch, RootState } from '../redux/store';
 
 const HomePage = () => {
+    const dispatch = useDispatch<AppDispatch>();
+    const userState = useSelector((state: RootState) => state.user);
     return (
         <>
             <section id="center" className="container">
@@ -30,9 +36,14 @@ const HomePage = () => {
                         <code>HMR</code>
                     </p>
                 </div>
-                <button type="button" className="counter">
+                <button
+                    type="button"
+                    className="counter"
+                    onClick={() => dispatch(userListLoading())}
+                >
                     button
                 </button>
+                <p>Is loading: {userState.list.loading}</p>
             </section>
 
             <div className="ticks" />
