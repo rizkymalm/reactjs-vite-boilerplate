@@ -27,9 +27,8 @@ const initialState: UserState = {
     },
     actions: {
         loading: false,
-        error: '',
+        error: undefined,
         type: null,
-        message: '',
     },
 };
 
