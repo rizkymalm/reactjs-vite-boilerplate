@@ -1,30 +1,7 @@
-// src/contexts/ThemeProvider.tsx
+import { useCallback, useEffect, useMemo, useState } from 'react';
 
-import {
-    createContext,
-    useCallback,
-    useContext,
-    useEffect,
-    useMemo,
-    useState,
-} from 'react';
+import { ThemeProviderContext } from './themeContext';
 
-// Tipe untuk nilai yang akan disediakan oleh context
-type ThemeProviderState = {
-    theme: 'light' | 'dark';
-    toggleTheme: () => void;
-};
-
-// Nilai awal untuk context
-const initialState: ThemeProviderState = {
-    theme: 'light',
-    toggleTheme: () => null,
-};
-
-// Membuat Context
-const ThemeProviderContext = createContext<ThemeProviderState>(initialState);
-
-// Membuat Provider Component
 export function ThemeProvider({
     children,
     defaultTheme = 'light',
@@ -42,16 +19,15 @@ export function ThemeProvider({
 
     useEffect(() => {
         const root = window.document.documentElement;
-
         root.classList.remove('light', 'dark');
         root.classList.add(theme);
-
         localStorage.setItem(storageKey, theme);
     }, [theme, storageKey]);
 
     const toggleTheme = useCallback(() => {
         setTheme(prevTheme => (prevTheme === 'light' ? 'dark' : 'light'));
     }, []);
+
     const value = useMemo(() => ({ theme, toggleTheme }), [theme, toggleTheme]);
 
     return (
@@ -60,14 +36,3 @@ export function ThemeProvider({
         </ThemeProviderContext.Provider>
     );
 }
-
-// Membuat custom hook untuk menggunakan context dengan lebih mudah
-export const useTheme = () => {
-    const context = useContext(ThemeProviderContext);
-
-    if (context === undefined) {
-        throw new Error('useTheme must be used within a ThemeProvider');
-    }
-
-    return context;
-};

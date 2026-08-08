@@ -1,14 +1,17 @@
 import '../App.css';
 
 import { Icon } from '@iconify/react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 
 import DigimalLogo from '../assets/digimal.png';
 import ReactLogo from '../assets/react.svg';
 import ViteLogo from '../assets/vitejs-logo.svg';
 import { ButtonThemeSwitch } from '../components/common/buttons';
 import Page from '../components/layouts/Page';
-import { useTheme } from '../contexts/themeProvider';
+import { useTheme } from '../contexts/themeContext';
+import { getUserList } from '../redux/actions/user';
+import type { AppDispatch } from '../redux/store';
 
 const getStarted = [
     {
@@ -30,6 +33,7 @@ const getStarted = [
 ];
 
 const HomePage = () => {
+    const dispatch = useDispatch<AppDispatch>();
     const [isCopied, setIsCopied] = useState(-1);
     const { theme, toggleTheme } = useTheme();
     const handleCopy = async (index: number) => {
@@ -41,6 +45,20 @@ const HomePage = () => {
             setIsCopied(-1);
         }, 2000);
     };
+    useEffect(() => {
+        const getUser = async () => {
+            await dispatch(
+                getUserList({
+                    queries: {
+                        page: 1,
+                        limit: 5,
+                    },
+                })
+            );
+        };
+        void getUser();
+    }, [dispatch]);
+
     return (
         <Page title="Home Page">
             <div className="fixed top-5 right-0 z-99 my-auto h-12.5 w-22.5">

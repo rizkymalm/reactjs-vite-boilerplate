@@ -1,13 +1,12 @@
-import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
+
+import { getUserList } from '../actions/user';
 
 interface UserState {
     list: {
         loading: boolean;
-        error: {
-            statusCode: number;
-            message: string;
-        };
-        data: any;
+        error: unknown;
+        data: unknown;
     };
     actions?: {
         loading: boolean;
@@ -22,7 +21,7 @@ interface UserState {
 const initialState: UserState = {
     list: {
         loading: false,
-        data: '',
+        data: null,
         error: undefined,
     },
     actions: {
@@ -36,14 +35,22 @@ export const userSlice = createSlice({
     name: 'user',
     initialState,
     reducers: {
-        userListLoading: (state: UserState) => {
-            state.list.loading = true;
-        },
-        userList: (state: UserState, action: PayloadAction) => {
-            state.list.data = action.payload;
-        },
+        userReset: () => initialState,
+    },
+    extraReducers: builder => {
+        builder
+            .addCase(getUserList.pending, (state: UserState) => {
+                state.list.loading = true;
+            })
+            .addCase(getUserList.fulfilled, (state: UserState, action) => {
+                state.list.loading = false;
+                state.list.data = action.payload;
+            })
+            .addCase(getUserList.rejected, (state: UserState, action) => {
+                state.list.error = action.payload;
+            });
     },
 });
 
-export const { userListLoading, userList } = userSlice.actions;
+export const { userReset } = userSlice.actions;
 export default userSlice.reducer;
