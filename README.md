@@ -23,15 +23,15 @@ Built for developers who want to focus on building features instead of configuri
 
 ## 🚀 Tech Stack
 
-| Technology | Description |
-|------------|-------------|
-| React | UI Library |
-| TypeScript | Static Type Checking |
-| Vite | Frontend Build Tool |
-| Redux Toolkit | State Management |
-| Tailwind CSS | Utility-first CSS Framework |
-| Storybook | Component Development Environment |
-| ESLint | Code Quality & Best Practices |
+| Technology    | Description                       |
+| ------------- | --------------------------------- |
+| React         | UI Library                        |
+| TypeScript    | Static Type Checking              |
+| Vite          | Frontend Build Tool               |
+| Redux Toolkit | State Management                  |
+| Tailwind CSS  | Utility-first CSS Framework       |
+| Storybook     | Component Development Environment |
+| ESLint        | Code Quality & Best Practices     |
 
 ---
 
@@ -67,15 +67,15 @@ http://localhost:5173
 
 ## 📜 Available Scripts
 
-| Command | Description |
-|---------|-------------|
-| `npm run dev` | Start development server |
-| `npm run build` | Build production application |
-| `npm run preview` | Preview production build |
-| `npm run lint` | Run ESLint |
-| `npm run lint:fix` | Automatically fix lint issues |
-| `npm run storybook` | Start Storybook |
-| `npm run build-storybook` | Build Storybook |
+| Command                   | Description                   |
+| ------------------------- | ----------------------------- |
+| `npm run dev`             | Start development server      |
+| `npm run build`           | Build production application  |
+| `npm run preview`         | Preview production build      |
+| `npm run lint`            | Run ESLint                    |
+| `npm run lint:fix`        | Automatically fix lint issues |
+| `npm run storybook`       | Start Storybook               |
+| `npm run build-storybook` | Build Storybook               |
 
 ---
 
@@ -96,7 +96,9 @@ src
 ├── redux/              # Redux Toolkit
 │   ├── reducers/
 │   └── store.ts
+│   └── hooks.ts
 │
+├── styles/             # Global styles
 ├── styles/             # Global styles
 ├── types/              # TypeScript types
 ├── utils/              # Helper functions
@@ -120,7 +122,7 @@ Redux Toolkit is pre-configured with:
 Example:
 
 ```ts
-const userState = useAppSelector((state) => state.user);
+const userState = useAppSelector(state => state.user);
 
 const dispatch = useAppDispatch();
 ```
