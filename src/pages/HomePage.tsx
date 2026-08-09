@@ -2,7 +2,6 @@ import '../App.css';
 
 import { Icon } from '@iconify/react';
 import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
 
 import DigimalLogo from '../assets/digimal.png';
 import ReactLogo from '../assets/react.svg';
@@ -10,8 +9,8 @@ import ViteLogo from '../assets/vitejs-logo.svg';
 import { ButtonThemeSwitch } from '../components/common/buttons';
 import Page from '../components/layouts/Page';
 import { useTheme } from '../contexts/themeContext';
-import { getUserList } from '../redux/actions/user';
-import type { AppDispatch } from '../redux/store';
+import { useAppDispatch } from '../redux/hooks';
+import { getUserList } from '../redux/user/user.thunks';
 
 const getStarted = [
     {
@@ -33,7 +32,7 @@ const getStarted = [
 ];
 
 const HomePage = () => {
-    const dispatch = useDispatch<AppDispatch>();
+    const dispatch = useAppDispatch();
     const [isCopied, setIsCopied] = useState(-1);
     const { theme, toggleTheme } = useTheme();
     const handleCopy = async (index: number) => {

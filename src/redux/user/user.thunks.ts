@@ -8,7 +8,6 @@ interface PropList {
         limit?: number;
     };
 }
-
 export const getUserList = createAsyncThunk(
     'user/getAll',
     async ({ queries }: PropList, { rejectWithValue }) => {
